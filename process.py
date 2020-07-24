@@ -1,33 +1,27 @@
-import errno
 import os
-import time
-import sys
 import random
 
 import numpy as np
 import cv2 as cv
-from math import floor, ceil
-from PIL import Image, ImageFilter, ImageOps, ImageEnhance, ImageChops  # Pillow
+# import errno
+# from math import floor, ceil
+# import time
+# import sys
+# from PIL import Image, ImageFilter, ImageOps, ImageEnhance, ImageChops  # Pillow
 
 random.seed(1234)
-CAPTCHA_FOLDER = "C:/Users/neggi/code/syrnia/captcha images/unmodified cv"
-DEFAULT_UNFILTERED = "C:/Users/neggi/code/syrnia/captcha images/unmodified cv/1002 0.png"
-DEFAULT_FILTERED = "C:/Users/neggi/code/syrnia/captcha images/denoised/0/1009 0.png"
-BLANK = "C:/Users/neggi/code/syrnia/captcha images/other/blank.png"
+CAPTCHA_FOLDER = "C:/Users/jerry/code/captcha images/unmodified cv"
+DEFAULT_UNFILTERED = CAPTCHA_FOLDER+"/1002 0.png"
+BLANK = "C:/Users/jerry/code/captcha images/other/blank.png"
 
 
-def load_pil(filename=DEFAULT_UNFILTERED):
-    im = Image.open(filename)
-    return im.convert('RGB')
+# def load_pil(filename=DEFAULT_UNFILTERED):
+#     im = Image.open(filename)
+#     return im.convert('RGB')
 
 
 def load_cv(file_path=DEFAULT_UNFILTERED):
     im = cv.imread(file_path)
-    return im
-
-
-def load_cv_filtered(file_path=DEFAULT_FILTERED):
-    im = cv.imread(file_path, cv.IMREAD_GRAYSCALE)
     return im
 
 
@@ -92,7 +86,7 @@ def denoise_thick(filename=DEFAULT_UNFILTERED, number=None):
     # cv.imshow(f'{filename} final', opened*black*255)
     # cv.imshow(f'{filename} close', result*255)
     cv.imshow(f'{filename} mask', o2*255)
-    # return result
+    return result
 
 
 def denoise_thin(filename=DEFAULT_UNFILTERED, number=None):
